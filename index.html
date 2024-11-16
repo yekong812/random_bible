@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 이미지 뽑기</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+    <!-- 첫 번째 페이지: 사용자 이름 입력 -->
+    <div class="page" id="namePage">
+        <h1>랜덤 이미지 뽑기</h1>
+        <div class="input-container">
+            <input type="text" id="userName" placeholder="이름을 입력하세요">
+            <button onclick="startRandomPick()">시작하기</button>
+        </div>
+    </div>
+
+    <!-- 두 번째 페이지: 로딩 화면 -->
+    <div class="page" id="loadingPage" style="display: none;">
+        <div class="loader-container">
+            <div class="loader">
+                <div class="loader-circle"></div>
+                <div class="loader-circle"></div>
+                <div class="loader-circle"></div>
+            </div>
+            <div class="loading-text">이미지를 뽑는 중입니다...</div>
+        </div>
+    </div>
+
+    <!-- 세 번째 페이지: 결과 화면 -->
+    <div class="page" id="resultPage" style="display: none;">
+        <h2>당신의 랜덤 이미지</h2>
+        <div class="result-container">
+            <div class="user-name-label"></div>
+            <div class="image-container">
+                <img id="randomImage" src="" alt="랜덤 이미지">
+            </div>
+        </div>
+        <button onclick="saveImage()">이미지 저장하기</button>
+        <button onclick="resetPage()">다시 뽑기</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 
