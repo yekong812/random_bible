@@ -1,0 +1,260 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1C7349; /* 배경색 수정 */
+    color: white;
+    text-align: center;
+    padding: 0 20px; /* 좌우 여백 추가 */
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: normal; /* 글씨 두께 조정 */
+    line-height: 1.5; /* 줄간격 조정 */
+}
+
+.input-container {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* 플레이스홀더 색상 수정 */
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-bottom: 2px solid white;
+}
+
+.char-count {
+    font-size: 12px;
+    color: white; /* 글자수 카운트 색상 수정 */
+    margin-top: 5px;
+}
+
+button {
+    width: 100%;
+    max-width: 300px; /* 버튼 최대 너비 설정 */
+    padding: 15px;
+    background-color: #004424; /* 버튼 색상 수정 */
+    color: white;
+    border: none;
+    border-radius: 8px; /* 버튼 모서리 둥글게 */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #003319; /* 호버 시 버튼 색상 약간 어둡게 */
+}
+
+/* 모바일 최적화를 위한 미디어 쿼리 */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    input[type="text"] {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+/* 로딩 페이지 스타일 */
+.loading-page {
+    height: 100vh;
+    background-image: url('./images/loading-bg.jpg'); /* 배경 이미지 추가 필요 */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.loading-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading-card h2 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.loading-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.cross {
+    color: #FFD700; /* 노란색 십자가 */
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.user-message {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 20px 0;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 6px;
+    background-color: #E0E0E0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.loading-progress {
+    width: 0%;
+    height: 100%;
+    background-color: #1C7349; /* 녹색 프로그레스 바 */
+    border-radius: 3px;
+    animation: progress 3s linear forwards;
+}
+
+.loading-icon {
+    width: 60px;
+    height: 60px;
+    margin: 20px auto;
+}
+
+.loading-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* result 페이지 스타일 */
+
+.result-page {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 320px; /* 컨테이너 최대 너비 설정 */
+    margin: 0 auto;
+}
+
+.result-card {
+    width: 100%;
+    aspect-ratio: 2/3; /* 이미지 비율 유지 */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.result-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; /* 이미지 하단 여백 제거 */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    max-width: 320px; /* 버튼 최대 너비 설정 */
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+button:first-child {
+    background-color: #1C7349;
+    color: white;
+}
+
+.home-button {
+    background-color: #004424;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 480px) {
+    .result-container {
+        max-width: 280px;
+    }
+    
+    button {
+        max-width: 280px;
+    }
+}
