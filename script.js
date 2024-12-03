@@ -64,18 +64,10 @@ const loadingIcons = [
 
 // 로딩 페이지에서 실행될 코드
 if (window.location.pathname.includes('loading.html')) {
-    // 랜덤 아이콘 선택
-    const randomIconIndex = Math.floor(Math.random() * loadingIcons.length);
-    const randomIcon = loadingIcons[randomIconIndex];
-    
-    // 아이콘 표시
-    const loadingIcon = document.getElementById('loadingIcon');
-    if (loadingIcon) {
-        const iconImg = document.createElement('img');
-        iconImg.src = randomIcon;
-        iconImg.alt = '로딩 아이콘';
-        loadingIcon.appendChild(iconImg);
-    }
+    // 랜덤으로 하나의 이미지만 보이게 처리
+    const loadingImages = document.querySelectorAll('.loading-img');
+    const randomIndex = Math.floor(Math.random() * loadingImages.length);
+    loadingImages[randomIndex].classList.add('show');
 
     // 저장된 사용자 이름 표시
     const userName = localStorage.getItem('userName');
@@ -89,8 +81,6 @@ if (window.location.pathname.includes('loading.html')) {
         window.location.href = 'result.html';
     }, 3000);
 }
-
-
 
 // 이미지 배열 정의
 const images = [
