@@ -62,9 +62,17 @@ const loadingIcons = [
     'images/loading_icon5.svg'
 ];
 
+// 이미지 배열 정의
+const images = [
+    'images/image1.jpg',
+    'images/image2.jpg',
+    'images/image3.jpg',
+    'images/image4.png'
+];
+
 // 로딩 페이지에서 실행될 코드
 if (window.location.pathname.includes('loading.html')) {
-    // 랜덤으로 하나의 이미지만 보이게 처리
+    // 랜덤으로 하나의 로딩 이미지만 보이게 처리
     const loadingImages = document.querySelectorAll('.loading-img');
     const randomIndex = Math.floor(Math.random() * loadingImages.length);
     loadingImages[randomIndex].classList.add('show');
@@ -76,19 +84,25 @@ if (window.location.pathname.includes('loading.html')) {
         userNameElement.textContent = userName;
     }
 
+    // 결과 이미지 미리 선택하고 로드하기
+    const savedImage = localStorage.getItem('selectedImage');
+    if (!savedImage) {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        const randomImage = images[randomIndex];
+        
+        // 이미지 미리 로드
+        const preloadImage = new Image();
+        preloadImage.src = randomImage;
+        
+        // 선택된 이미지 저장
+        localStorage.setItem('selectedImage', randomImage);
+    }
+
     // 3초 후 결과 페이지로 이동
     setTimeout(() => {
         window.location.href = 'result.html';
     }, 3000);
 }
-
-// 이미지 배열 정의
-const images = [
-    'images/image1.jpg',
-    'images/image2.jpg',
-    'images/image3.jpg',
-    'images/image4.png'
-];
 
 // 결과 페이지에서 실행될 코드
 if (window.location.pathname.includes('result.html')) {
