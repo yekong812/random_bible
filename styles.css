@@ -1,3 +1,4 @@
+/* 전체 스타일 */
 body, html {
     margin: 0;
     padding: 0;
@@ -5,10 +6,81 @@ body, html {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
+
+/* welcome 페이지 스타일 (index.html) */
+.welcome-page {
+    min-height: 100vh;
+    background-image: url('./images/index_background.png');
+    background-size: 420px 890px;  /* 모바일 화면 비율에 맞게 설정 */
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+}
+
+.welcome-content h1 {
+    font-size: 50px;
+    margin: 0;
+    margin-top: 90px;
+    margin-bottom: 10px;
+}
+
+.welcome-content h2 {
+    font-size: 30px;
+    font-weight: normal;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.church-info {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;  /* 중앙 정렬 */
+}
+
+.church-logo {
+    width: auto;
+    height: 30px; 
+    object-fit: contain;
+}
+
+.start-button {
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    background-color: #004424;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.start-button:hover {
+    background-color: #003319;
+}
+
+
+/* 입력 페이지 스타일 (input.html) */
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
     background-color: #1C7349; /* 배경색 수정 */
@@ -18,10 +90,11 @@ body, html {
     box-sizing: border-box;
 }
 
-h1 {
+.container h1 {
     font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: normal; /* 글씨 두께 조정 */
+    margin-top: 130px;
+    margin-bottom: 30px;
+    font-weight: bold; /* 글씨 두께 조정 */
     line-height: 1.5; /* 줄간격 조정 */
 }
 
@@ -34,8 +107,8 @@ h1 {
     align-items: center;
 }
 
-input[type="text"] {
-    width: 100%;
+.container input[type="text"] {
+    width: 70%;
     padding: 10px;
     border: none;
     border-bottom: 1px solid white;
@@ -54,50 +127,35 @@ input[type="text"]:focus {
     border-bottom: 2px solid white;
 }
 
-.char-count {
-    font-size: 12px;
-    color: white; /* 글자수 카운트 색상 수정 */
-    margin-top: 5px;
-}
-
 button {
     width: 100%;
-    max-width: 300px; /* 버튼 최대 너비 설정 */
+    max-width: 300px;
     padding: 15px;
-    background-color: #004424; /* 버튼 색상 수정 */
+    background-color: #004424;
     color: white;
     border: none;
-    border-radius: 8px; /* 버튼 모서리 둥글게 */
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 button:hover {
     background-color: #003319; /* 호버 시 버튼 색상 약간 어둡게 */
 }
 
-/* 모바일 최적화를 위한 미디어 쿼리 */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 20px;
-    }
-
-    input[type="text"] {
-        font-size: 14px;
-    }
-
-    button {
-        font-size: 14px;
-    }
-}
 
 /* 로딩 페이지 스타일 */
 .loading-page {
     height: 100vh;
-    background-image: url('./images/loading-bg.jpg'); /* 배경 이미지 추가 필요 */
-    background-size: cover;
+    background-image: url('./images/background.png');
+    background-size: 420px 890px;
     background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,14 +169,22 @@ button:hover {
     padding: 30px;
     width: 90%;
     max-width: 320px;
+    aspect-ratio: 2/3;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .loading-card h2 {
     font-size: 24px;
     color: #333;
     margin: 0;
+    margin-top: 45px;
     margin-bottom: 5px;
 }
 
@@ -126,13 +192,15 @@ button:hover {
     font-size: 18px;
     color: #333;
     margin: 0;
+    margin-top: 5px;
     margin-bottom: 20px;
 }
 
-.cross {
-    color: #FFD700; /* 노란색 십자가 */
-    font-size: 40px;
-    margin: 20px 0;
+.loading-icon {
+    width: 60px;
+    height: 60px;
+    margin: 30px auto;
+    position: relative;
 }
 
 .user-message {
@@ -148,7 +216,8 @@ button:hover {
     background-color: #E0E0E0;
     border-radius: 3px;
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: auto;  /* 하단에 배치 */
+    margin-bottom: 45px;
 }
 
 .loading-progress {
@@ -174,23 +243,35 @@ button:hover {
     top: 0;
     left: 0;
     opacity: 0;
+    animation: cycleImages 3s linear forwards;
 }
 
-/* 페이지 로드 시 랜덤하게 하나의 이미지만 보이도록 JavaScript로 추가될 클래스 */
-.loading-img.show {
-    opacity: 1;
+/* 각 이미지별로 다른 애니메이션 딜레이 설정 */
+.loading-img:nth-child(1) { animation-delay: 0s; }
+.loading-img:nth-child(2) { animation-delay: 0.6s; }
+.loading-img:nth-child(3) { animation-delay: 1.2s; }
+.loading-img:nth-child(4) { animation-delay: 1.8s; }
+.loading-img:nth-child(5) { animation-delay: 2.4s; }
+
+/* 아이콘 애니메이션 추가 */
+@keyframes cycleImages {
+    0%, 15% { opacity: 1; }
+    20%, 100% { opacity: 0; }
 }
 
+/* 프로그레스 바 애니메이션 추가 */
 @keyframes progress {
     0% { width: 0%; }
     100% { width: 100%; }
 }
 
 /* result 페이지 스타일 */
-
 .result-page {
     min-height: 100vh;
-    background-color: #f5f5f5;
+    background-image: url('./images/background.png');
+    background-size: 420px 890px;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -225,46 +306,53 @@ button:hover {
 }
 
 .button-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    margin-top: 80px;
     align-items: center;
-    gap: 10px;
-    width: 100%;
+    position: center; 
 }
 
-button {
+
+/* 이미지 저장하기 버튼 */
+.button-container button:first-child {
     width: 100%;
-    max-width: 320px; /* 버튼 최대 너비 설정 */
+    max-width: 300px;
     padding: 15px;
+    background-color: #1C7349;
+    color: white;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    text-align: center;
+    margin-bottom: 60px;  /* 아래 버튼과의 간격 */
 }
 
-button:first-child {
-    background-color: #1C7349;
-    color: white;
-}
-
-.home-button {
+/* 처음으로 돌아가기 버튼 */
+.button-container .home-button {
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
     background-color: #004424;
     color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-button:hover {
+/* 이미지 저장하기 버튼 */
+.button-container button:first-child {
+    background-color: #1C7349;
+}
+
+/* 처음으로 돌아가기 버튼 */
+.button-container .home-button {
+    background-color: #004424;
+}
+
+/* 호버 효과 */
+.button-container button:hover {
     opacity: 0.9;
-}
-
-/* 모바일 반응형 */
-@media (max-width: 480px) {
-    .result-container {
-        max-width: 280px;
-    }
-    
-    button {
-        max-width: 280px;
-    }
 }

@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025 내게 주신 하나님 말씀</title>
+    <title>랜덤 성경 구절 뽑기</title>
+    <!-- Google Fonts 추가 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- CSS 파일 연결 -->
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <div class="welcome-page">
-        <div class="welcome-content">
-            <h1>2025</h1>
-            <h2>내게 주신 하나님 말씀</h2>
-            <div class="church-info">
-                <img src="images/bpmc_logo.png" alt="부평감리교회 청년부" class="church-logo">
-            </div>
-            <button onclick="location.href='input.html'" class="start-button">말씀 뽑기</button>
+    <div class="container">
+        <h1>하나님의 말씀을 뽑으실<br>준비가 되셨나요?</h1>
+        <div class="input-container">
+            <input type="text" id="nameInput" placeholder="이름을 입력하세요." maxlength="10">
         </div>
+        <button id="pickButton" onclick="startRandomPick()" class="button">말씀 뽑기</button>
     </div>
     <script src="./script.js"></script>
 </body>

@@ -7,7 +7,7 @@
 
 
 
-if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+if (window.location.pathname.includes('input.html')) {
     // 첫 페이지(index.html)에서만 실행될 코드
     const nameInput = document.getElementById('nameInput');
     const charCountElement = document.querySelector('.char-count');
@@ -72,11 +72,6 @@ const images = [
 
 // 로딩 페이지에서 실행될 코드
 if (window.location.pathname.includes('loading.html')) {
-    // 랜덤으로 하나의 로딩 이미지만 보이게 처리
-    const loadingImages = document.querySelectorAll('.loading-img');
-    const randomIndex = Math.floor(Math.random() * loadingImages.length);
-    loadingImages[randomIndex].classList.add('show');
-
     // 저장된 사용자 이름 표시
     const userName = localStorage.getItem('userName');
     const userNameElement = document.getElementById('userName');
@@ -107,18 +102,7 @@ if (window.location.pathname.includes('loading.html')) {
 // 결과 페이지에서 실행될 코드
 if (window.location.pathname.includes('result.html')) {
     const savedImage = localStorage.getItem('selectedImage');
-    
-    if (savedImage) {
-        // 저장된 이미지가 있으면 그것을 사용
-        document.getElementById('randomImage').src = savedImage;
-    } else {
-        // 저장된 이미지가 없을 때만 새로 랜덤 선택
-        const randomIndex = Math.floor(Math.random() * images.length);
-        const randomImage = images[randomIndex];
-        document.getElementById('randomImage').src = randomImage;
-        // 선택된 이미지 저장
-        localStorage.setItem('selectedImage', randomImage);
-    }
+    document.getElementById('randomImage').src = savedImage;
 }
 
 // 처음으로 돌아가기 함수 수정
@@ -127,8 +111,6 @@ function goToHome() {
     localStorage.removeItem('selectedImage');
     window.location.href = 'index.html';
 }
-
-
 
 // 이미지 저장 함수
 function saveImage() {
