@@ -143,3 +143,19 @@ function resetPage() {
     document.getElementById('namePage').style.display = 'block';
     document.getElementById('userName').value = '';
 }*/
+
+// input 페이지 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', function() {
+    const nameInput = document.getElementById('nameInput');
+    const pickButton = document.getElementById('pickButton');
+    
+    if (nameInput && pickButton) {
+        nameInput.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                pickButton.classList.add('active');
+            } else {
+                pickButton.classList.remove('active');
+            }
+        });
+    }
+});
