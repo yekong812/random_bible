@@ -70,7 +70,156 @@ const images = [
     'images/image4.png'
 ];
 
-// 로딩 페이지에서 실행될 코드
+// 성경 구절 파싱 함수
+async function getBibleVerses() {
+    try {
+        const response = await fetch('bible.txt');
+        const text = await response.text();
+        
+        // 정규식을 사용하여 큰따옴표로 둘러싸인 부분을 추출
+        const verses = text.match(/"([^"]*)"/g)
+            .map(verse => {
+                // 따옴표 제거 및 쉼표로 구절과 위치 분리
+                const [content, location] = verse.slice(1, -1).split(',').map(s => s.trim());
+                return { content, location };
+            });
+        
+        return verses;
+    } catch (error) {
+        console.error('성경 구절을 불러오는데 실패했습니다:', error);
+        return [];
+    }
+}
+
+// 배경 이미지 배열
+const backgroundImages = [
+    'images/bible_background/back1.png',
+    'images/bible_background/back2.png',
+    'images/bible_background/back3.png',
+    'images/bible_background/back4.png',
+    'images/bible_background/back5.png',
+    'images/bible_background/back6.png'
+];
+
+// 랜덤 요소 선택 함수
+function getRandomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+// 이미지 생성 함수
+async function generateVerseImage() {
+    const userName = localStorage.getItem('userName');
+    const verses = await getBibleVerses();
+    const randomVerse = getRandomElement(verses);
+    const randomBackground = getRandomElement(backgroundImages);
+
+    // Canvas 생성
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d', { 
+        alpha: true,
+        antialias: true // 안티앨리어싱 활성화
+    });
+
+    // 더 높은 해상도 설정
+    canvas.width = 600;
+    canvas.height = 800;
+
+    // Canvas 초기화 - 완전 투명하게 설정
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 배경 이미지 로드 및 그리기
+    const backgroundImg = new Image();
+    backgroundImg.src = randomBackground;
+    
+    await new Promise((resolve) => {
+        backgroundImg.onload = () => {
+            // 부드러운 라운드 처리를 위한 설정
+            ctx.save();
+            ctx.beginPath();
+            
+            // 각 모서리에 대해 개별적으로 곡선 처리
+            const radius = 40;
+            ctx.moveTo(radius, 0);
+            
+            // 상단 오른쪽 모서리
+            ctx.lineTo(canvas.width - radius, 0);
+            ctx.quadraticCurveTo(canvas.width, 0, canvas.width, radius);
+            
+            // 하단 오른쪽 모서리
+            ctx.lineTo(canvas.width, canvas.height - radius);
+            ctx.quadraticCurveTo(canvas.width, canvas.height, canvas.width - radius, canvas.height);
+            
+            // 하단 왼쪽 모서리
+            ctx.lineTo(radius, canvas.height);
+            ctx.quadraticCurveTo(0, canvas.height, 0, canvas.height - radius);
+            
+            // 상단 왼쪽 모서리
+            ctx.lineTo(0, radius);
+            ctx.quadraticCurveTo(0, 0, radius, 0);
+            
+            ctx.closePath();
+            ctx.clip();
+            
+            // 이미지 스무딩 활성화
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
+            // 배경 이미지 그리기
+            ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
+
+            
+            // 라운드 처리를 위한 경로 생성
+            ctx.beginPath();
+            ctx.roundRect(0, 0, canvas.width, canvas.height, 20); // 라운드 반경 20px
+            ctx.clip(); 
+
+            // 텍스트 스타일 설정
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            
+            
+            // 상단 텍스트
+            ctx.font = 'bold 40px "Noto Sans KR"';
+            ctx.fillText('2025', canvas.width/2, 100);
+            ctx.font = 'bold 30px "Noto Sans KR"';
+            ctx.fillText(`${userName}님에게 주신 말씀`, canvas.width/2, 150);
+            
+            // 성경 구절
+            ctx.font = '24px "Noto Sans KR"';
+            const words = randomVerse.content.split(' ');
+            let lines = [];
+            let currentLine = '';
+            
+            // 자동 줄바꿈
+            words.forEach(word => {
+                const testLine = currentLine + word + ' ';
+                if (ctx.measureText(testLine).width > canvas.width - 100) {
+                    lines.push(currentLine);
+                    currentLine = word + ' ';
+                } else {
+                    currentLine = testLine;
+                }
+            });
+            lines.push(currentLine);
+            
+            // 구절 그리기
+            lines.forEach((line, i) => {
+                ctx.fillText(line, canvas.width/2, 350 + (i * 40));
+            });
+            
+            // 구절 위치
+            ctx.font = 'bold 24px "Noto Sans KR"';
+            ctx.fillText(randomVerse.location, canvas.width/2, canvas.height - 100);
+            
+            ctx.restore();
+            resolve();
+        };
+    });
+
+    return canvas.toDataURL('image/png', 1.0);
+}
+
+// 로딩 페이지에서 실행될 코드 수정
 if (window.location.pathname.includes('loading.html')) {
     // 저장된 사용자 이름 표시
     const userName = localStorage.getItem('userName');
@@ -79,24 +228,15 @@ if (window.location.pathname.includes('loading.html')) {
         userNameElement.textContent = userName;
     }
 
-    // 결과 이미지 미리 선택하고 로드하기
-    const savedImage = localStorage.getItem('selectedImage');
-    if (!savedImage) {
-        const randomIndex = Math.floor(Math.random() * images.length);
-        const randomImage = images[randomIndex];
+    // 이미지 생성 및 저장
+    generateVerseImage().then(imageUrl => {
+        localStorage.setItem('selectedImage', imageUrl);
         
-        // 이미지 미리 로드
-        const preloadImage = new Image();
-        preloadImage.src = randomImage;
-        
-        // 선택된 이미지 저장
-        localStorage.setItem('selectedImage', randomImage);
-    }
-
-    // 3초 후 결과 페이지로 이동
-    setTimeout(() => {
-        window.location.href = 'result.html';
-    }, 3000);
+        // 3초 후 결과 페이지로 이동
+        setTimeout(() => {
+            window.location.href = 'result.html';
+        }, 3000);
+    });
 }
 
 // 결과 페이지에서 실행될 코드
@@ -117,7 +257,12 @@ function saveImage() {
     const resultCard = document.getElementById('resultCard');
     if (!resultCard) return;
 
-    html2canvas(resultCard).then(canvas => {
+    html2canvas(resultCard, {
+        backgroundColor: null, // 배경을 투명하게 설정
+        useCORS: true,
+        scale: 8,
+        quality: 1.0
+    }).then(canvas => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/png');
         link.download = 'random_verse.png';
