@@ -62,14 +62,6 @@ const loadingIcons = [
     'images/loading_icon5.svg'
 ];
 
-// 이미지 배열 정의
-const images = [
-    'images/image1.jpg',
-    'images/image2.jpg',
-    'images/image3.jpg',
-    'images/image4.png'
-];
-
 // 성경 구절 파싱 함수
 async function getBibleVerses() {
     try {
@@ -93,12 +85,27 @@ async function getBibleVerses() {
 
 // 배경 이미지 배열
 const backgroundImages = [
-    'images/bible_background/back1.png',
-    'images/bible_background/back2.png',
-    'images/bible_background/back3.png',
-    'images/bible_background/back4.png',
-    'images/bible_background/back5.png',
-    'images/bible_background/back6.png'
+    // 타입 1 배경 (텍스트 배치1, 흰색)
+    'images/bible_background/back1-1.png',
+    'images/bible_background/back1-2.png',
+    'images/bible_background/back1-3.png',
+    'images/bible_background/back1-4.png',
+    // 타입 2 배경 (텍스트 배치2, 흰색)
+    'images/bible_background/back2-1.png',
+    'images/bible_background/back2-2.png',
+    'images/bible_background/back2-3.png',
+    'images/bible_background/back2-4.png',
+    'images/bible_background/back2-5.png',
+    // 타입 3 배경 (텍스트 배치1, 검정색)
+    'images/bible_background/back3-1.png',
+    'images/bible_background/back3-2.png',
+    'images/bible_background/back3-3.png',
+    'images/bible_background/back3-4.png',
+    // 타입 4 배경 (텍스트 배치2, 검정색)
+    'images/bible_background/back4-1.png',
+    'images/bible_background/back4-2.png',
+    'images/bible_background/back4-3.png',
+    'images/bible_background/back4-4.png',
 ];
 
 // 랜덤 요소 선택 함수
@@ -122,7 +129,7 @@ async function generateVerseImage() {
 
     // 더 높은 해상도 설정
     canvas.width = 600;
-    canvas.height = 800;
+    canvas.height = 945;
 
     // Canvas 초기화 - 완전 투명하게 설정
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -138,7 +145,7 @@ async function generateVerseImage() {
             ctx.beginPath();
             
             // 각 모서리에 대해 개별적으로 곡선 처리
-            const radius = 40;
+            const radius = 20;
             ctx.moveTo(radius, 0);
             
             // 상단 오른쪽 모서리
@@ -173,43 +180,65 @@ async function generateVerseImage() {
             ctx.roundRect(0, 0, canvas.width, canvas.height, 20); // 라운드 반경 20px
             ctx.clip(); 
 
-            // 텍스트 스타일 설정
-            ctx.fillStyle = 'white';
+            // 배경 이미지 타입 확인
+            const isType2Layout = randomBackground.includes('back2') || randomBackground.includes('back4');
+            const isBlackText = randomBackground.includes('back3') || randomBackground.includes('back4');
+            
+            // 텍스트 색상 설정
+            ctx.fillStyle = isBlackText ? '#000000' : '#FFFFFF';
             ctx.textAlign = 'center';
             
-            
-            // 상단 텍스트
-            ctx.font = 'bold 40px "Noto Sans KR"';
-            ctx.fillText('2025', canvas.width/2, 100);
-            ctx.font = 'bold 30px "Noto Sans KR"';
-            ctx.fillText(`${userName}님에게 주신 말씀`, canvas.width/2, 150);
-            
-            // 성경 구절
-            ctx.font = '24px "Noto Sans KR"';
-            const words = randomVerse.content.split(' ');
-            let lines = [];
-            let currentLine = '';
-            
-            // 자동 줄바꿈
-            words.forEach(word => {
-                const testLine = currentLine + word + ' ';
-                if (ctx.measureText(testLine).width > canvas.width - 100) {
-                    lines.push(currentLine);
-                    currentLine = word + ' ';
-                } else {
-                    currentLine = testLine;
-                }
-            });
-            lines.push(currentLine);
-            
-            // 구절 그리기
-            lines.forEach((line, i) => {
-                ctx.fillText(line, canvas.width/2, 350 + (i * 40));
-            });
-            
-            // 구절 위치
-            ctx.font = 'bold 24px "Noto Sans KR"';
-            ctx.fillText(randomVerse.location, canvas.width/2, canvas.height - 100);
+            if (isType2Layout) {
+                // 타입 2 레이아웃 (타입 2, 4 배경용)
+                // 연도
+                ctx.font = 'bold 40px "Noto Sans KR"';
+                ctx.fillText('2025', canvas.width/2, canvas.height/2 - 180);
+                
+                // 사용자 이름
+                ctx.font = 'bold 30px "Noto Sans KR"';
+                ctx.fillText(`${userName}님에게 주신 말씀`, canvas.width/2, canvas.height/2 - 130);
+                
+                // 성경 구절
+                ctx.font = '24px "Noto Sans KR"';
+                // '/'를 기준으로 줄 분리
+                const lines = randomVerse.content.split('/').map(line => line.trim());
+                
+                const totalTextHeight = lines.length * 40;
+                const startY = (canvas.height/2) + 40;
+                
+                lines.forEach((line, i) => {
+                    ctx.fillText(line, canvas.width/2, startY + (i * 40));
+                });
+                
+                // 구절 위치
+                ctx.font = 'bold 24px "Noto Sans KR"';
+                ctx.fillText(randomVerse.location, canvas.width/2, canvas.height * 0.9);
+                
+            } else {
+                // 타입 1 레이아웃 (타입 1, 3 배경용)
+                ctx.font = 'bold 40px "Noto Sans KR"';
+                ctx.fillText('2025', canvas.width/2, 150);
+                
+                ctx.font = 'bold 30px "Noto Sans KR"';
+                ctx.fillText(`${userName}님에게 주신 말씀`, canvas.width/2, 200);
+                
+                // 성경 구절
+                ctx.font = '24px "Noto Sans KR"';
+                const lines = randomVerse.content.split('/').map(line => line.trim());
+                
+                // 중앙 배치를 위한 계산
+                const lineHeight = 40;
+                const totalTextHeight = lines.length * lineHeight;
+                const startY = (canvas.height/2) - (totalTextHeight/2);
+                
+                lines.forEach((line, i) => {
+                    ctx.fillText(line, canvas.width/2, startY + (i * lineHeight));
+                });
+                
+                // 몇장몇절
+                ctx.font = 'bold 24px "Noto Sans KR"';
+                ctx.fillText(randomVerse.location, canvas.width/2, canvas.height - 150);
+            }
             
             ctx.restore();
             resolve();
