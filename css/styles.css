@@ -1,0 +1,403 @@
+
+/* 폰트 등록 */
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../fonts/Pretendard/Pretendard-Regular.woff2') format('woff2'),
+         url('../fonts/Pretendard/Pretendard-Regular.woff') format('woff'),
+         url('../fonts/Pretendard/Pretendard-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../fonts/Pretendard/Pretendard-Bold.woff2') format('woff2'),
+         url('../fonts/Pretendard/Pretendard-Bold.woff') format('woff'),
+         url('../fonts/Pretendard/Pretendard-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+/* 전체 스타일 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Pretendard', sans-serif;
+}
+
+/* welcome 페이지 스타일 (index.html) */
+.welcome-page {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/index_background.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+}
+
+.welcome-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding-top: 15vh;  /* 상단 여백 조정 */
+}
+.welcome-content h1 {
+    font-size: 10vw;  /* 화면 크기에 맞춰 조정 */
+    margin: 0;
+    margin-bottom: 2vh;
+    font-family: 'Pretendard';
+    font-weight: bold;
+}
+
+.welcome-content h2 {
+    font-size: 8vw;  /* 화면 크기에 맞춰 조정 */
+    font-weight: normal;
+    margin: 0;
+    margin-top: 2vh;
+    font-family: 'Pretendard';
+}
+.start-button {
+    width: 80%;
+    height: 7%;
+    padding: 3%;  /* 패딩도 화면 크기에 따라 조정 */
+    background-color: #004424;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: clamp(14px, 2vh, 18px);  /* 글자 크기도 반응형으로 */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+/* input 페이지 스타일 */
+.input-page {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/input_background.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+}
+
+.input-page h1 {
+    font-size: 7vw;
+    padding-top: 15vh;
+    margin-bottom: 4vh;
+    font-weight: bold;
+    line-height: 1.5;
+    font-family: 'Pretendard';
+}
+
+.input-form {
+    position: relative;
+    width: 100%;
+    max-width: 60vw;
+    margin-bottom: 6vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-counter {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -3vh;
+    font-size: clamp(12px, 2vw, 14px);
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Pretendard';
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    height: 6vh;
+    border: none;
+    border-bottom: 2px solid #fff;
+    background: transparent;
+    font-size: clamp(16px, 3vw, 18px);
+    color: #fff;
+    padding: 0;
+    font-family: 'Pretendard';
+    text-align: center;
+}
+
+.input-field::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.input-field:focus {
+    outline: none;
+    border-bottom: 2px solid white;
+}
+
+.input-button {
+    width: 72%;
+    height: 6.5%;
+    padding: 3%;
+    background-color: #004424;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: clamp(14px, 2.5vh, 18px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Pretendard';
+
+}
+
+.input-button.active {
+    background-color: white;
+    color: #1C7349;
+}
+
+.input-button:hover {
+    background-color: #003319;
+    color: white;
+}
+
+.input-button.active:hover {
+    background-color: #f0f0f0;
+    color: #1C7349;
+}
+
+/* 로딩 페이지 스타일 */
+.loading-page {
+    height: 100vh;
+    background-image: url('../images/background.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vw;
+    box-sizing: border-box;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+
+.loading-card {
+    width: 90%;
+    aspect-ratio: 2/3;
+    border-radius: 3vh;
+    background: white;
+    padding: 4vh;
+    text-align: center;
+    box-shadow: 0 0.4vh 0.6vh rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-card h2 {
+    font-size: clamp(18px, 3vw, 24px);
+    color: #333;
+    margin: 0;
+    margin-top: 6vh;
+    margin-bottom: 1vh;
+}
+
+.loading-card h3 {
+    font-size: clamp(14px, 3vw, 18px);
+    color: #333;
+    margin: 0;
+    margin-top: 1vh;
+    margin-bottom: 3vh;
+}
+
+.loading-icon {
+    width: clamp(40px, 15vw, 60px);
+    height: clamp(40px, 15vw, 60px);
+    margin: 4vh auto;
+    position: relative;
+}
+
+.user-message {
+    color: #333;
+    font-size: clamp(14px, 4vw, 16px);
+    line-height: 1.5;
+    margin: 3vh 0;
+}
+
+.loading-bar {
+    width: 100%;
+    height: clamp(4px, 1vh, 6px);
+    background-color: #E0E0E0;
+    border-radius: 0.5vh;
+    overflow: hidden;
+    margin-top: auto;
+    margin-bottom: 6vh;
+}
+
+.loading-progress {
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(28, 115, 73, 0) 0%,
+        #1C7349 50%,
+        rgba(28, 115, 73, 0) 100%
+    );
+    border-radius: 0.5vh;
+    animation: progress 2s cubic-bezier(0.77, 0, 0.23, 1) infinite;
+}
+
+.loading-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: cycleImages 2s linear forwards;
+}
+
+/* 애니메이션 관련 코드는 그대로 유지 */
+.loading-img:nth-child(1) {animation: cycleImages 2s linear 0s, cycleImages 2s linear 2s;}
+.loading-img:nth-child(2) {animation: cycleImages 2s linear 0.4s, cycleImages 2s linear 2.4s;}
+.loading-img:nth-child(3) {animation: cycleImages 2s linear 0.8s, cycleImages 2s linear 2.8s;}
+.loading-img:nth-child(4) {animation: cycleImages 2s linear 1.2s, cycleImages 2s linear 3.2s;}
+.loading-img:nth-child(5) {animation: cycleImages 2s linear 1.6s, cycleImages 2s linear 3.6s;}
+
+@keyframes cycleImages {
+    0%, 15% { opacity: 1; }
+    20%, 100% { opacity: 0; }
+}
+
+@keyframes progress {
+    0% { 
+        transform: translateX(-100%);
+    }
+    100% { 
+        transform: translateX(220%);
+    }
+}
+  
+
+/* result 페이지 스타일 */
+.result-page {
+    min-height: 100vh;
+    background-image: url('../images/background.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vw;
+    box-sizing: border-box;
+}
+
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    max-width: 80vw;
+    margin: 0 auto;
+}
+
+.result-card {
+    width: 90%;
+    max-width: 80vw;
+    aspect-ratio: 2/3;
+    border-radius: 3vw;
+    overflow: hidden;
+    box-shadow: 0 0.4vh 0.6vh rgba(0, 0, 0, 0.1);
+    margin-bottom: 3vh;
+}
+
+.result-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3vw;
+    margin-top: 3vh;
+    position: static;
+}
+
+.button-container .result-button {
+    width: 45%;
+    height: 6vh;
+    padding: 2vh;
+    border: none;
+    border-radius: 2vw;
+    font-size: clamp(14px, 2.5vw, 16px);
+    cursor: pointer;
+    position: static;
+    font-family: 'Pretendard';
+    background-color: #004424;
+    color: white;
+}
+
+.button-container .home-button {
+    background-color: #004424;
+    color: white;
+}
+
+
+/* save 페이지 스타일 */
+.save-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;  /* 검은 배경 */
+}
+
+.save-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* 이미지 비율 유지하면서 화면에 맞춤 */
+}
+

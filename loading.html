@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>랜덤 성경 구절 뽑기</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <div class="loading-page">
-        <div class="loading-card">
-            <h2>2025</h2>
-            <h3>올해의 말씀</h3>
-            <div class="loading-icon">
+        <div class="loading-container">
+            <div class="loading-card">
+                <h2>2025</h2>
+                <h3>내게 주신 말씀</h3>
+                <div class="loading-icon">
                 <!-- 랜덤으로 보여줄 이미지들을 모두 추가하고 CSS로 하나만 보이게 처리 -->
                 <img src="images/loading_icon1.svg" alt="로딩 아이콘" class="loading-img">
                 <img src="images/loading_icon2.svg" alt="로딩 아이콘" class="loading-img">
@@ -23,7 +27,7 @@
                 <img src="images/loading_icon5.svg" alt="로딩 아이콘" class="loading-img">
             </div>
             <p class="user-message">
-                <span id="userName"></span>님에게<br>
+                <span id="userName"></span> 에게<br>
                 꼭 맞는 말씀을 찾고 있습니다.
             </p>
             <div class="loading-bar">
@@ -31,6 +35,6 @@
             </div>
         </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
