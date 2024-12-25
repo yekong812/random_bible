@@ -30,7 +30,7 @@ body, html {
     width: 100%;
     height: 100%;
     background-image: url('../images/index_background.png');
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
@@ -66,29 +66,28 @@ body, html {
 }
 .start-button {
     width: 80%;
-    height: 7%;
+    height: 45px;
     padding: 3%;  /* 패딩도 화면 크기에 따라 조정 */
     background-color: #004424;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: clamp(14px, 2vh, 18px);  /* 글자 크기도 반응형으로 */
+    font-size: 15px;  /* 글자 크기도 반응형으로 */
     cursor: pointer;
     transition: background-color 0.3s;
     position: absolute;
-    bottom: 10%;
+    bottom: 5vh;
     left: 50%;
     transform: translateX(-50%);
+    font-family: 'Pretendard';
 }
-
-
 
 /* input 페이지 스타일 */
 .input-page {
     width: 100%;
     height: 100%;
     background-image: url('../images/input_background.png');
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
@@ -124,7 +123,7 @@ body, html {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: -3vh;
+    bottom: -15pt;
     font-size: clamp(12px, 2vw, 14px);
     color: rgba(255, 255, 255, 0.5);
     font-family: 'Pretendard';
@@ -155,21 +154,20 @@ body, html {
 
 .input-button {
     width: 72%;
-    height: 6.5%;
+    height: 45px;
     padding: 3%;
     background-color: #004424;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: clamp(14px, 2.5vh, 18px);
+    font-size: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
     position: absolute;
-    bottom: 12%;
+    bottom: 8vh;
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Pretendard';
-
 }
 
 .input-button.active {
@@ -191,7 +189,7 @@ body, html {
 .loading-page {
     height: 100vh;
     background-image: url('../images/background.png');
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
@@ -268,16 +266,11 @@ body, html {
 }
 
 .loading-progress {
-    width: 40%;
+    width: 0%;  /* 시작은 0%부터 */
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        rgba(28, 115, 73, 0) 0%,
-        #1C7349 50%,
-        rgba(28, 115, 73, 0) 100%
-    );
+    background-color: #1C7349;  /* 그라데이션 대신 단색 사용 */
     border-radius: 0.5vh;
-    animation: progress 2s cubic-bezier(0.77, 0, 0.23, 1) infinite;
+    animation: progress 4s linear forwards;  /* forwards를 사용해 마지막 상태 유지 */
 }
 
 .loading-img {
@@ -292,23 +285,30 @@ body, html {
 }
 
 /* 애니메이션 관련 코드는 그대로 유지 */
-.loading-img:nth-child(1) {animation: cycleImages 2s linear 0s, cycleImages 2s linear 2s;}
-.loading-img:nth-child(2) {animation: cycleImages 2s linear 0.4s, cycleImages 2s linear 2.4s;}
-.loading-img:nth-child(3) {animation: cycleImages 2s linear 0.8s, cycleImages 2s linear 2.8s;}
-.loading-img:nth-child(4) {animation: cycleImages 2s linear 1.2s, cycleImages 2s linear 3.2s;}
-.loading-img:nth-child(5) {animation: cycleImages 2s linear 1.6s, cycleImages 2s linear 3.6s;}
+.loading-img:nth-child(1) {animation: cycleImages 4s linear 0s, secondCycle 4s linear 2.9s;}    /* 1번 이미지: 처음 + 두번째 */
+.loading-img:nth-child(2) {animation: cycleImages 4s linear 0.6s, secondCycle 4s linear 3.4s;} /* 2번 이미지: 처음 + 두번째 */
+.loading-img:nth-child(3) {animation: cycleImages 4s linear 1.2s, secondCycle 4s linear 3.9s;} /* 3번 이미지: 처음 + 두번째 */
+.loading-img:nth-child(4) {animation: cycleImages 4s linear 1.8s;}                            /* 4번 이미지: 처음만 */
+.loading-img:nth-child(5) {animation: cycleImages 4s linear 2.4s;}                            /* 5번 이미지: 처음만 */
 
 @keyframes cycleImages {
-    0%, 15% { opacity: 1; }
-    20%, 100% { opacity: 0; }
+    0% { opacity: 0; }
+    5%, 12% { opacity: 1; }
+    18%, 100% { opacity: 0; }
+}
+
+@keyframes secondCycle {
+    0% { opacity: 0; }
+    5%, 12% { opacity: 1; }
+    18%, 100% { opacity: 0; }
 }
 
 @keyframes progress {
     0% { 
-        transform: translateX(-100%);
+        width: 0%;
     }
     100% { 
-        transform: translateX(220%);
+        width: 100%;
     }
 }
   
@@ -317,7 +317,7 @@ body, html {
 .result-page {
     min-height: 100vh;
     background-image: url('../images/background.png');
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
@@ -398,6 +398,16 @@ body, html {
 .save-container img {
     width: 100%;
     height: 100%;
-    object-fit: contain;  /* 이미지 비율 유지하면서 화면에 맞춤 */
+    object-fit: cover;  /* 이미지 비율 유지하면서 화면에 맞춤 */
 }
 
+/* result 페이지 전환 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.result-page {
+    opacity: 0;  /* 초기 상태는 투명 */
+    animation: fadeIn 0.5s ease-in forwards;
+}
