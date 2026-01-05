@@ -274,7 +274,7 @@ async function generateVerseImage() {
                 
                 // 연도
                 ctx.font = '24px "Pretendard"';
-                ctx.fillText('2025', canvas.width/2, canvas.height/2 - 170);
+                ctx.fillText('2026', canvas.width/2, canvas.height/2 - 170);
                 
                 // 사용자 이름
                 ctx.font = '24px "Pretendard"';
@@ -299,7 +299,7 @@ async function generateVerseImage() {
 
                 // 연도
                 ctx.font = '24px "Pretendard"';
-                ctx.fillText('2025', canvas.width/2, 150);
+                ctx.fillText('2026', canvas.width/2, 150);
                 
                 // 사용자 이름
                 ctx.font = '24px "Pretendard"';
@@ -394,7 +394,7 @@ if (window.location.pathname.includes('save.html')) {
 
                 // 연도
                 ctx.font = 'bold 60px "Pretendard"';
-                ctx.fillText('2025', canvas.width/2, canvas.height/2 - 640);
+                ctx.fillText('2026', canvas.width/2, canvas.height/2 - 640);
                 
                 // 사용자 이름
                 ctx.font = 'bold 60px "Pretendard"';
@@ -419,7 +419,7 @@ if (window.location.pathname.includes('save.html')) {
 
                 // 연도
                 ctx.font = 'bold 60px "Pretendard"';
-                ctx.fillText('2025', canvas.width/2, 700);
+                ctx.fillText('2026', canvas.width/2, 700);
                 
                 // 사용자 이름
                 ctx.font = 'bold 60px "Pretendard"';

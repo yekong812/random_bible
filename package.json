@@ -1,7 +1,7 @@
 {
   "name": "bible-verse-picker",
   "version": "1.0.0",
-  "description": "2025 내게 주신 하나님 말씀 랜덤 뽑기 웹앱",
+  "description": "2026 내게 주신 하나님 말씀 랜덤 뽑기 웹앱",
   "scripts": {
     "start": "serve -l 3000",
     "dev": "serve -l 3000"
